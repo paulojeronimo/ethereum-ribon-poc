@@ -29,11 +29,11 @@ contract Ribon {
   function addStory(string memory _text) public {
     /*
       create a story:
-        - the id will be generated
-        - the text will be an argument of this function
+        √ - the id will be generated
+        √ - the text will be an argument of this function
         - the number of tokens will be an argument
-        - the publisher will be the msg.sender
-      add the created history to the history map
+        √ - the publisher will be the msg.sender
+      √ add the created history to the history map
     */
     require(bytes(_text).length > 0);
     storyCount++;
