@@ -49,5 +49,15 @@ contract('RibonToken', (accounts) => {
         assert(error.message.indexOf('revert') >= 0, 'error message must contain revert')
       }
     })
+    it("should transfer the amount from sender to the receiving account", async () => {
+      const amount = 1000
+      const sender = accounts[0]
+      const receiver = accounts[1]
+      await token.transfer(receiver, amount, { from: sender })
+      const senderFinalBalance = await token.balanceOf(sender)
+      const receiverFinalBalance = await token.balanceOf(receiver)
+      assert.equal(senderFinalBalance.toNumber(), RibonTokenConfig.totalSupply - amount)
+      assert.equal(receiverFinalBalance.toNumber(), amount)
+    })
   })
 })
