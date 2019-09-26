@@ -2,6 +2,7 @@ const RibonToken = artifacts.require('./RibonToken.sol')
 const RibonTokenConfig = require('../RibonTokenConfig.json')
 
 contract('RibonToken', (accounts) => {
+  const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
   let token
 
   before(async () => {
@@ -28,6 +29,17 @@ contract('RibonToken', (accounts) => {
     it('should allocates the initial supply to the admin account', async () => {
       const adminBalance = await token.balanceOf(accounts[0])
       assert.equal(RibonTokenConfig.totalSupply, adminBalance)
+    })
+  })
+
+  describe('transfer', () => {
+    it('should not work if the recipient has a zero address', async () => {
+      try {
+        await token.transfer.call(ZERO_ADDRESS, 0)
+        throw Error('transfer should generated an Error')
+      } catch (error) {
+        assert(error.message.indexOf('revert') >= 0, 'error message must contain revert')
+      }
     })
   })
 })
