@@ -6,12 +6,14 @@ contract RibonToken {
 }
 
 contract Ribon {
+  uint public storyCount;
+
   /*
       Called by Publishers (generally NGOs).
       A story have a text (written by a Publisher)
         and an associated number of Ribon tokens.
   */
-  function addStory() public {
+  function addStory(string memory text) public {
     /*
       create a story:
         - the id will be generated
@@ -20,6 +22,8 @@ contract Ribon {
         - the publisher will be the msg.sender
       add the created history to the history map
     */
+    require(bytes(text).length > 0);
+    storyCount++;
   }
   
   // Called by any person who uses Ribon
