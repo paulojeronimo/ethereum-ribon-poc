@@ -69,5 +69,9 @@ contract('RibonToken', (accounts) => {
       assert.equal(transfer.to, accounts[1], 'transfer to')
       assert.equal(transfer.value, amount, 'transfer amount')
     })
+    it("should return true", async () => {
+      const result = await token.transfer.call(accounts[1], 0, { from: accounts[0] })
+      assert.isTrue(result, 'transfer result')
+    })
   })
 })
