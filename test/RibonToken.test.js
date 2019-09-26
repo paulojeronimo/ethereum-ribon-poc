@@ -59,5 +59,15 @@ contract('RibonToken', (accounts) => {
       assert.equal(senderFinalBalance.toNumber(), RibonTokenConfig.totalSupply - amount)
       assert.equal(receiverFinalBalance.toNumber(), amount)
     })
+    it("should emit a Transfer event", async () => {
+      const amount = 1000
+      const receipt = await token.transfer(accounts[1], amount, { from: accounts[0] })
+      assert.equal(receipt.logs.length, 1, 'triggers one event')
+      assert.equal(receipt.logs[0].event, 'Transfer', 'should be the "Transfer" event')
+      const transfer = receipt.logs[0].args
+      assert.equal(transfer.from, accounts[0], 'transfer from')
+      assert.equal(transfer.to, accounts[1], 'transfer to')
+      assert.equal(transfer.value, amount, 'transfer amount')
+    })
   })
 })

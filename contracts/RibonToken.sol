@@ -32,6 +32,7 @@ contract RibonToken is IERC20 {
     require(balanceOf(msg.sender) >= amount);
     balances[msg.sender] -= amount;
     balances[recipient] += amount;
+    emit Transfer(msg.sender, recipient, amount);
     return true;
   }
 
