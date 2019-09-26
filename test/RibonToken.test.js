@@ -1,4 +1,4 @@
-const RibonToken = artifacts.require('./Ribon.sol')
+const RibonToken = artifacts.require('./RibonToken.sol')
 
 contract('RibonToken', (accounts) => {
   let token
