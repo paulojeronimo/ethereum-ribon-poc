@@ -1,4 +1,5 @@
 const RibonToken = artifacts.require('./RibonToken.sol')
+const RibonTokenConfig = require('../RibonTokenConfig.json')
 
 contract('RibonToken', (accounts) => {
   let token
@@ -14,6 +15,12 @@ contract('RibonToken', (accounts) => {
       assert.notEqual(address, '')
       assert.notEqual(address, null)
       assert.notEqual(address, undefined)
+    })
+    it('should have the correct attributes', async () => {
+      assert.equal(RibonTokenConfig.name, await token.name())
+      assert.equal(RibonTokenConfig.symbol, await token.symbol())
+      const _decimals = await token.decimals()
+      assert.equal(RibonTokenConfig.decimals, _decimals.toNumber())
     })
   })
 })
