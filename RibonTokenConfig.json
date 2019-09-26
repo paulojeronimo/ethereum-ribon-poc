@@ -1,5 +1,6 @@
 {
   "name": "Ribon Token",
   "symbol": "RIBT",
-  "decimals": 18
+  "decimals": 18,
+  "totalSupply": 1000000
 }

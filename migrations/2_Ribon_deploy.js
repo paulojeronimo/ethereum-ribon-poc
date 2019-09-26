@@ -7,7 +7,8 @@ module.exports = function(deployer) {
     RibonToken,
     RibonTokenConfig.name,
     RibonTokenConfig.symbol,
-    RibonTokenConfig.decimals
+    RibonTokenConfig.decimals,
+    RibonTokenConfig.totalSupply,
   );
   deployer.deploy(Ribon);
 };

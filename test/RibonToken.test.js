@@ -22,5 +22,8 @@ contract('RibonToken', (accounts) => {
       const _decimals = await token.decimals()
       assert.equal(RibonTokenConfig.decimals, _decimals.toNumber())
     })
+    it('should have the configured total supply', async () => {
+      assert.equal(RibonTokenConfig.totalSupply, await token.totalSupply())
+    })
   })
 })
