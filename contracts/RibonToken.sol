@@ -27,8 +27,9 @@ contract RibonToken is IERC20 {
     return balances[account];
   }
 
-  function transfer(address recipient, uint256) public returns (bool) {
+  function transfer(address recipient, uint256 amount) public returns (bool) {
     require(recipient != address(0));
+    require(balanceOf(msg.sender) >= amount);
     return false;
   }
 

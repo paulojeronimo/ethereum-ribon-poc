@@ -41,5 +41,13 @@ contract('RibonToken', (accounts) => {
         assert(error.message.indexOf('revert') >= 0, 'error message must contain revert')
       }
     })
+    it("should not work for an amount larger than the sender's balance", async () => {
+      try {
+        await token.transfer.call(accounts[1], RibonTokenConfig.totalSupply + 1)
+        throw Error('transfer should generated an Error')
+      } catch (error) {
+        assert(error.message.indexOf('revert') >= 0, 'error message must contain revert')
+      }
+    })
   })
 })
