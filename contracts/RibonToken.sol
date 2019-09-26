@@ -9,20 +9,22 @@ contract RibonToken is IERC20 {
   string public symbol;
   uint8 public decimals;
   uint256 private initialSupply;
+  mapping (address => uint256) private balances;
 
   constructor (string memory _name, string memory _symbol, uint8 _decimals, uint256 _totalSupply) public {
     name = _name;
     symbol = _symbol;
     decimals = _decimals;
     initialSupply = _totalSupply;
+    balances[msg.sender] = _totalSupply;
   }
 
   function totalSupply() public view returns (uint256) {
     return initialSupply;
   }
 
-  function balanceOf(address) public view returns (uint256) {
-    return 0x0;
+  function balanceOf(address account) public view returns (uint256) {
+    return balances[account];
   }
 
   function transfer(address, uint256) public returns (bool) {

@@ -25,5 +25,9 @@ contract('RibonToken', (accounts) => {
     it('should have the configured total supply', async () => {
       assert.equal(RibonTokenConfig.totalSupply, await token.totalSupply())
     })
+    it('should allocates the initial supply to the admin account', async () => {
+      const adminBalance = await token.balanceOf(accounts[0])
+      assert.equal(RibonTokenConfig.totalSupply, adminBalance)
+    })
   })
 })
